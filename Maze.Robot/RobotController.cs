@@ -22,6 +22,8 @@ namespace Maze.Solver
             this.robot = robot;
         }
 
+        // Tip: Don't make members public if they are only used inside of
+        //      this class. Use a private member instead.
         public HashSet<Point> alreadyChecked { get; private set; }
 
         /// <summary>
@@ -49,6 +51,9 @@ namespace Maze.Solver
         }
         public void CheckPoint(Point currentPoint)
         {
+            // General tip: Don't write `if (something == true)...` or `if (something == false)...`.
+            //              Prefer `if (something)...` or `if (!something)...` instead.
+
             // Have I already been there? End Reached?
             if (alreadyChecked.Contains(currentPoint) == false && reachedEnd == false)
             {
@@ -58,6 +63,8 @@ namespace Maze.Solver
                 if (robot.TryMove(Direction.Left) == true )
                 {
                     // Is Point left valid?
+                    // Tip: Avoid repeating the data type left and right of the assignment (in this
+                    //      case `Point`). Prefer `var` instead.
                     Point newtestpoint = new Point(currentPoint.X - 1, currentPoint.Y);
                     // Try this new Point
                     CheckPoint(newtestpoint);
